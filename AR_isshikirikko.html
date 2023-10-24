@@ -10,29 +10,28 @@
     <script type="text/javascript">
       
       //--テスト実装--
-function captureScene() {
-    var sceneEl = document.querySelector('a-scene');
-    if (sceneEl && sceneEl.components && sceneEl.components.screenshot) {
-        sceneEl.components.screenshot.capture('perspective');
+<script>
+
+    function captureScene() {
+        var scene = document.querySelector('a-scene');
+        var canvas = scene.canvas;
+        var dataURL = canvas.toDataURL('image/png');
+        downloadImage(dataURL);
     }
-}
 
-function downloadImage(data) {
-    var link = document.createElement('a');
-    link.href = data;
-    link.download = 'screenshot.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+    function downloadImage(data) {
+        var link = document.createElement('a');
+        link.href = data;
+        link.download = 'screenshot.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 
-document.querySelector('#downloadImageButton').addEventListener('click', function() {
-    var scene = document.querySelector('a-scene');
-    var canvas = scene.canvas;
-    var dataURL = canvas.toDataURL('image/png');
-    downloadImage(dataURL);
-});
-//--テスト実装おわり--      
+    document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
+</script>
+   
+    <!--テスト実装おわり--      
 
       
     <script>
