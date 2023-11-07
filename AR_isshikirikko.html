@@ -9,45 +9,6 @@
 　　<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script type="text/javascript">
       
-      //--テスト実装--
-<script>
-
-    function captureScene() {
-        var scene = document.querySelector('a-scene');
-        var canvas = scene.canvas;
-        var dataURL = canvas.toDataURL('image/png');
-        downloadImage(dataURL);
-    }
-
-    function downloadImage(data) {
-        var link = document.createElement('a');
-        link.href = data;
-        link.download = 'screenshot.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
-</script>
-   
-<input
-      id="downloadImageButton"
-      type="button"
-      style="width:120px;"
-      value="画像保存"
-    >
-      
-    <a
-     id="getImage"
-     href="" 
-     style="display:none;" 
-     download="image.png">
-     画像保存
-   </a>
-     <!--テスト実装おわり-->      
-
-      
     <script>
       AFRAME.registerComponent("ar-hit-test", {
         init: function () {
@@ -169,9 +130,28 @@
         "
         value="モデルを小さく"
       />
-
+      <!-- 11/07追加 -->
+　　　<input id="downloadImageButton" type="button" value="画像保存" />
+      <!-- 11/07追加分終了 -->
     </div>
     <script>
+         // -- A-Frameのシーンをキャプチャする関数 --
+      function captureScene() {
+            var scene = document.querySelector('a-scene');
+            var canvas = scene.canvas;
+            var dataURL = canvas.toDataURL('image/png');
+            downloadImage(dataURL);
+        }
+
+        function downloadImage(data) {
+            var link = document.createElement('a');
+            link.href = data;
+            link.download = 'screenshot.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        // -- A-Frameのシーンをキャプチャする関数終了 --
       var scene = document.querySelector("a-scene");
       var hitTest = document.querySelector("#hitTestMarker");
       var button = document.querySelector("#button");
@@ -206,6 +186,10 @@
       });
 
       button_scale_down.addEventListener("click", function () {
+        // 11/07追加イベントリスナー
+      document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
+        // 11/07追加イベントリスナー終了
+
         //モデルの大きさ変更
         var scaleSize = model.getAttribute("scale");
         scaleSize.x = scaleSize.x - changeSize.x;
@@ -217,6 +201,9 @@
         );
         //alert(scaleSize.x);
       });
+      
+    
+         
     </script>
   </body>
 </html>
