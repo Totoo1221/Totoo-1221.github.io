@@ -138,9 +138,11 @@
          // -- A-Frameのシーンをキャプチャする関数 --
       function captureScene() {
             var scene = document.querySelector('a-scene');
+            if(scene && scene.renderStarted){
             var canvas = scene.canvas;
             var dataURL = canvas.toDataURL('image/png');
             downloadImage(dataURL);
+            }
         }
 
         function downloadImage(data) {
