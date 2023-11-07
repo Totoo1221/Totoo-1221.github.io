@@ -184,12 +184,13 @@
         );
         //alert(scaleSize.x);
       });
+      
+      // 11/07追加イベントリスナー
+      document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
+       // 11/07追加イベントリスナーfin
 
       button_scale_down.addEventListener("click", function () {
-        // 11/07追加イベントリスナー
-      document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
-        // 11/07追加イベントリスナー終了
-
+        
         //モデルの大きさ変更
         var scaleSize = model.getAttribute("scale");
         scaleSize.x = scaleSize.x - changeSize.x;
