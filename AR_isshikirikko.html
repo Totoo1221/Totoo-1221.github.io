@@ -156,7 +156,7 @@
     </div>
     <script>
          // -- A-Frameのシーンをキャプチャする関数 --
-      function captureScene() {
+       downloadImageButton.addEventListener("click", function () {
             var scene = document.querySelector('a-scene');
             if(!scene) return;
 
@@ -229,7 +229,7 @@
     </script>
     <script>
       // 11/07追加イベントリスナー
-      document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
+      // document.querySelector('#downloadImageButton').addEventListener('click', captureScene);
        // 11/07追加イベントリスナーfin
     </script>
   </body>
